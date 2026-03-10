@@ -1,0 +1,172 @@
+// Mock data for Fit Planet gym website
+
+export const SITE_DATA = {
+  hero: {
+    title: "TRANSFORM YOUR BODY",
+    subtitle: "ELEVATE YOUR MIND",
+    description: "Join the ultimate fitness community where champions are made",
+    cta: "START YOUR JOURNEY",
+    image: "https://images.unsplash.com/photo-1605296867724-fa87a8ef53fd"
+  },
+  
+ whyChooseUs: [
+  {
+    id: 1,
+    title: "STATE-OF-THE-ART EQUIPMENT",
+    description: "Advanced strength training machines, modern cardio equipment, and premium free weights designed for muscle building, fat loss, and complete body transformation."
+  },
+  {
+    id: 2,
+    title: "EXPERT TRAINERS",
+    description: "Certified personal trainers offering customized workout plans, weight loss programs, muscle gain training, and professional fitness guidance to achieve your goals faster."
+  },
+  {
+    id: 3,
+    title: "FLEXIBLE SCHEDULES",
+    description: "18/7 gym access with convenient batch timings, flexible workout hours, and easy membership plans tailored to your daily routine."
+  },
+  {
+    id: 4,
+    title: "COMMUNITY DRIVEN",
+    description: "A motivating fitness community focused on strength training, functional workouts, group sessions, and a supportive environment for long-term results."
+  }
+],
+
+  membershipPlans: [
+    {
+      id: 1,
+      name: "MONTHLY",
+      oldPrice: "₹2500",
+      price: "₹1,800",
+      duration: "per month",
+      features: [
+        "Full Gym Access",
+        "Personal Trainer Support (On Request)",
+        "Flexible Short-Term Commitment",
+        "Perfect for Beginners & Trial Members"
+      ],
+      popular: false
+    },
+    {
+      id: 2,
+      name: "QUARTERLY",
+      oldPrice: "₹6000",
+      price: "₹4,500",
+      duration: "3 months",
+      features: [
+        "Full Gym Access",
+        "Trainer Guidance Available",
+        "Better Value Than Monthly Plan",
+        "Ideal for Consistent Progress"
+      ],
+      popular: true
+    },
+    {
+      id: 3,
+      name: "HALF-YEARLY",
+      oldPrice: "₹12000",
+      price: "₹8,800",
+      duration: "6 months",
+      features: [
+        "Full Access to All Training Areas",
+        "Trainer Guidance Available",
+        "Better Value Than Monthly Plan",
+        "Strong Commitment = Better Results"
+      ],
+      popular: false
+    },
+    {
+      id: 4,
+      name: "YEARLY",
+      oldPrice: "₹24,000",
+      price: "₹16,500",
+      duration: "12 months",
+      features: [
+        "Unlimited Gym Access",
+        "Long-Term Fitness Commitment",
+        "Best Savings Plan",
+        "Perfect for Serious Fitness Enthusiasts"
+      ],
+      popular: false
+    }
+  ],
+
+  trainers: [
+    {
+      id: 1,
+      name: "ALEX RODRIGUEZ",
+      specialization: "Strength & Conditioning",
+      experience: "8 Years Experience",
+      category: "General Trainer",
+      image: "https://images.unsplash.com/photo-1483721310020-03333e577078",
+      bio: "Former athlete specializing in powerlifting and functional training"
+    },
+    {
+      id: 2,
+      name: "SARAH MITCHELL",
+      specialization: "HIIT & Cardio Expert",
+      experience: "6 Years Experience",
+      category: "Personal Trainer",
+      image: "https://images.unsplash.com/photo-1517438984742-1262db08379e",
+      bio: "Marathon runner and certified group fitness instructor"
+    }
+  ],
+
+
+  gallery: [
+    { id: 1, image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2", alt: "Workout Equipment" },
+    { id: 2, image: "https://images.unsplash.com/photo-1591291621060-89264efbeaed", alt: "Exercise Mat & Weights" },
+    { id: 3, image: "https://images.unsplash.com/photo-1558017487-06bf9f82613a", alt: "Dumbbells & Nutrition" },
+    { id: 4, image: "https://images.unsplash.com/photo-1584827387150-8ae4caebe906", alt: "Strength Equipment" },
+    { id: 5, image: "https://images.unsplash.com/photo-1518644961665-ed172691aaa1", alt: "Partner Training" },
+    { id: 6, image: "https://images.unsplash.com/photo-1758520705189-a6b56a7ae832", alt: "Outdoor Running" },
+    { id: 7, image: "https://images.unsplash.com/photo-1517438984742-1262db08379e", alt: "Athletic Performance" },
+    { id: 8, image: "https://images.unsplash.com/photo-1669989179336-b2234d2878df", alt: "Training Session" },
+    { id: 9, image: "https://images.unsplash.com/photo-1522898467493-49726bf28798", alt: "Functional Training" },
+    { id: 10, image: "https://images.unsplash.com/photo-1483721310020-03333e577078", alt: "Workout Preparation" }
+  ],
+
+  about: {
+    mission: "At Fit Planet Gym, our mission is to deliver professional fitness training, strength and conditioning programs, and result-driven workout plans that help individuals achieve sustainable weight loss, muscle building, and total body transformation. We are committed to providing certified personal trainers, modern gym equipment, structured cardio workouts, and customized fitness programs tailored for beginners, athletes, and fitness enthusiasts. Our goal is to create a motivating fitness environment that promotes fat loss, endurance, flexibility, and overall wellness while encouraging a disciplined and healthy lifestyle for long-term results.",
+    vision: "Our vision is to become the leading fitness destination and trusted gym in India, known for world-class facilities, expert personal training, and high-performance fitness programs. We aim to build a strong fitness community focused on strength training, functional workouts, body transformation, and holistic wellness. Through innovation, advanced gym equipment, and science-based training methods, Fit Planet Gym strives to set new standards in fitness excellence, helping members unlock their full potential and achieve peak physical performance.",
+    facilities: [
+      "Certified Personal Trainers & Expert Fitness Coaching",
+      "Dedicated Strength & Weightlifting Area for Muscle Building",
+      "Modern Cardio Equipment for Weight Loss & Endurance Training",
+      "Customized Weight Loss & Muscle Gain Programs",
+      "Friendly Trainers with Personalized Attention",
+      "Professional Nutrition Guidance & Diet Consultation",
+      "Clean & Secure Storage Space for Members",
+      "Supportive Fitness Environment Focused on Real Results"
+    ]
+  },
+
+  contact: {
+    address: "B-3/83, Paschim Vihar, New Delhi, India 110056",
+    phone: "+91 9650161386 , +91 9821900471",
+    email: "fitplanetgym1386@gmail.com",
+    hours: " 18/7 Access • Open Every Day",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d231.01716383075987!2d77.09949916040897!3d28.6650884505777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1772122516653!5m2!1sen!2sin"
+  },
+
+  testimonials: [
+    {
+      id: 1,
+      name: "Rahul Verma",
+      text: "Lost 15kg in 4 months! The trainers are amazing and the community is so supportive.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Anjali Desai",
+      text: "Best gym I've ever joined. Clean facilities, great equipment, and flexible hours.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Vikram Singh",
+      text: "The personal training sessions transformed my approach to fitness. Highly recommend!",
+      rating: 5
+    }
+  ]
+};
