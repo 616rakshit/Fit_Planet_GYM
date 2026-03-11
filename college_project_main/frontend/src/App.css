@@ -197,12 +197,19 @@ body {
   }
 }
 
-/* Global mobile layout tweaks */
-@media (max-width: 500px) {
+/* Global mobile layout tweaks (phones only, e.g. 393px width) */
+@media (max-width: 400px) {
   /* Make primary/secondary buttons easier to tap */
   .btn-primary,
   .btn-secondary {
     width: 100%;
+    font-size: 0.9rem;
+    padding: 0.9em 1.4em;
+  }
+
+  /* Slightly tighter global spacing */
+  .container {
+    padding: 0 12px;
   }
 
   /* Ensure images scale within their containers */
