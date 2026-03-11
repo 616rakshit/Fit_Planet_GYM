@@ -135,16 +135,22 @@ const Contact = () => {
 
               {/* Map */}
               <div style={styles.mapContainer}>
-                <iframe
-                  src={SITE_DATA.contact.mapEmbed}
-                  width="100%"
-                  height="300"
-                  style={styles.map}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Gym Location"
-                ></iframe>
+                <div style={styles.mapWrapper}>
+                  <iframe
+                    src={SITE_DATA.contact.mapEmbed}
+                    width="100%"
+                    height="300"
+                    style={styles.map}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Gym Location"
+                  ></iframe>
+
+                  <div style={styles.mapPin}>
+                    <MapPin size={40} color="#d9fb06" />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -346,6 +352,18 @@ const styles = {
     borderRadius: '8px',
     overflow: 'hidden',
     border: '1px solid rgba(63, 72, 22, 0.5)'
+  },
+  mapWrapper: {
+    position: 'relative',
+    width: '100%',
+    height: '300px'
+  },
+  mapPin: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -100%)',
+    pointerEvents: 'none'
   },
   map: {
     border: 'none',
