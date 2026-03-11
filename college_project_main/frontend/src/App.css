@@ -197,6 +197,21 @@ body {
   }
 }
 
+/* Global mobile layout tweaks */
+@media (max-width: 768px) {
+  /* Make primary/secondary buttons easier to tap */
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  /* Ensure images scale within their containers */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
