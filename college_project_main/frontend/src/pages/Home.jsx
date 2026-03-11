@@ -7,8 +7,8 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section style={styles.hero}>
-        <div style={styles.heroBackground}>
+      <section className="hero-section" style={styles.hero}>
+        <div className="hero-bg" style={styles.heroBackground}>
           <img
             src={SITE_DATA.hero.image}
             alt="Gym Interior"
@@ -16,7 +16,7 @@ const Home = () => {
           />
           <div style={styles.heroOverlay}></div>
         </div>
-        <div style={styles.heroContent}>
+        <div className="hero-content" style={styles.heroContent}>
           <h1 className="brand-display" style={styles.heroTitle}>
             {SITE_DATA.hero.title}
           </h1>
@@ -26,7 +26,7 @@ const Home = () => {
           <p className="body-large" style={styles.heroDescription}>
             {SITE_DATA.hero.description}
           </p>
-          <div style={styles.heroButtons}>
+          <div className="hero-buttons" style={styles.heroButtons}>
             <Link to="/membership" className="btn-primary">
               {SITE_DATA.hero.cta}
             </Link>
@@ -43,7 +43,7 @@ const Home = () => {
           <h2 className="heading-2" style={styles.sectionTitle}>
             WHY CHOOSE US
           </h2>
-          <div style={styles.whyGrid}>
+          <div className="why-grid" style={styles.whyGrid}>
             {SITE_DATA.whyChooseUs.map((item, index) => {
               const icons = [
                 <Zap size={40} color="#d9fb06" key={index} />,
@@ -73,7 +73,7 @@ const Home = () => {
           <h2 className="heading-2" style={styles.sectionTitle}>
             MEMBERSHIP PLANS
           </h2>
-          <div style={styles.membershipGrid}>
+          <div className="membership-grid" style={styles.membershipGrid}>
             {SITE_DATA.membershipPlans.map((plan) => (
               <div
                 key={plan.id}
@@ -130,7 +130,7 @@ const Home = () => {
           <h2 className="heading-2" style={styles.sectionTitle}>
             SUCCESS STORIES
           </h2>
-          <div style={styles.testimonialsGrid}>
+          <div className="testimonials-grid" style={styles.testimonialsGrid}>
             {SITE_DATA.testimonials.map((testimonial) => (
               <div key={testimonial.id} style={styles.testimonialCard}>
                 <div style={styles.quoteIcon}>"</div>

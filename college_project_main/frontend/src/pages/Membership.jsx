@@ -23,7 +23,7 @@ const Membership = () => {
       {/* Pricing Section */}
       <section style={styles.pricingSection}>
         <div style={styles.container}>
-          <div style={styles.plansGrid}>
+          <div className="plans-grid" style={styles.plansGrid}>
             {SITE_DATA.membershipPlans.map((plan) => (
               <div
                 key={plan.id}
@@ -81,7 +81,7 @@ const Membership = () => {
           <h2 className="heading-2" style={styles.sectionTitle}>
             ALL MEMBERSHIPS INCLUDE
           </h2>
-          <div style={styles.benefitsGrid}>
+          <div className="benefits-grid" style={styles.benefitsGrid}>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
                 ALL DAY ACCESS
@@ -140,7 +140,7 @@ const Membership = () => {
           <h2 className="heading-2" style={styles.sectionTitle}>
             FREQUENTLY ASKED QUESTIONS
           </h2>
-          <div style={styles.faqGrid}>
+          <div className="faq-grid" style={styles.faqGrid}>
             <div style={styles.faqItem}>
               <h3 className="heading-5" style={styles.faqQuestion}>
                 What are your gym membership plans and pricing options?
@@ -208,9 +208,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'center'
   },
-plansGrid: {
+ plansGrid: {
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, minmax(260px, 1fr))', // ✅ 4 columns on desktop
+  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
   gap: '40px',
   alignItems: 'stretch',
   width: '100%',

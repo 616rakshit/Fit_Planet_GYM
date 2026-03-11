@@ -219,6 +219,53 @@ body {
   }
 }
 
+/* Home page responsive layout */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+
+  .hero-content {
+    padding: 80px 20px 60px;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+  }
+
+  .why-grid,
+  .membership-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Membership and Contact grids small-phone tweaks */
+@media (max-width: 480px) {
+  .plans-grid,
+  .benefits-grid,
+  .faq-grid {
+    gap: 20px;
+  }
+
+  .content-grid {
+    gap: 32px;
+  }
+
+  .form-row {
+    gap: 16px;
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
