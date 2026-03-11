@@ -148,7 +148,7 @@ const Contact = () => {
                   ></iframe>
 
                   <div style={styles.mapPin}>
-                    <MapPin size={40} color="#d9fb06" />
+                    <MapPin size={40} color="#FF0000" />
                   </div>
                 </div>
               </div>
