@@ -5,8 +5,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
@@ -37,6 +37,26 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+
+class Enquiry(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    phone: str
+    email: EmailStr
+    plan: str
+    message: Optional[str] = ""
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class EnquiryCreate(BaseModel):
+    name: str
+    phone: str
+    email: EmailStr
+    plan: str
+    message: Optional[str] = ""
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -65,6 +85,34 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+
+@api_router.post("/enquiry", response_model=Enquiry)
+async def create_enquiry(input: EnquiryCreate):
+    enquiry_dict = input.model_dump()
+    enquiry_obj = Enquiry(**enquiry_dict)
+
+    doc = enquiry_obj.model_dump()
+    doc["timestamp"] = doc["timestamp"].isoformat()
+
+    await db.enquiries.insert_one(doc)
+    return enquiry_obj
+
+
+@api_router.get("/enquiry", response_model=List[Enquiry])
+async def list_enquiries(limit: int = 100):
+    cursor = (
+        db.enquiries.find({}, {"_id": 0})
+        .sort("timestamp", -1)
+        .limit(limit)
+    )
+    enquiries = await cursor.to_list(length=limit)
+
+    for enquiry in enquiries:
+        if isinstance(enquiry.get("timestamp"), str):
+            enquiry["timestamp"] = datetime.fromisoformat(enquiry["timestamp"])
+
+    return enquiries
 
 # Include the router in the main app
 app.include_router(api_router)
