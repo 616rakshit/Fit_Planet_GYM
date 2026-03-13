@@ -34,17 +34,26 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    
-    // Mock submission (will be replaced with API call)
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit enquiry');
+      }
+
       setIsSuccess(true);
       setFormData({
         name: '',
@@ -53,10 +62,15 @@ const Contact = () => {
         plan: '',
         message: ''
       });
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting enquiry:', error);
+      alert('There was a problem submitting your enquiry. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
