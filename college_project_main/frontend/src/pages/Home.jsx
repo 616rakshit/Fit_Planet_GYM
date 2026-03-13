@@ -166,11 +166,7 @@ const Home = () => {
 
 const styles = {
   hero: {
-    position: 'relative',
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    overflow: 'hidden'
+    // Layout is handled via .hero-section in App.css
   },
   heroBackground: {
     position: 'absolute',
@@ -197,10 +193,7 @@ const styles = {
     left: 0
   },
   heroContent: {
-    position: 'relative',
-    zIndex: 1,
-    maxWidth: '800px',
-    padding: '120px 40px 80px'
+    // Layout and spacing handled via .hero-content in App.css
   },
   heroTitle: {
     marginBottom: '16px'
