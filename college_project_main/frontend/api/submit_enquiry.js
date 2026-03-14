@@ -19,14 +19,28 @@ async function getRawBody(req) {
 
 async function readStreamToText(stream) {
   if (!stream) return '';
+  if (typeof stream.getReader !== 'function') {
+    return new Promise((resolve, reject) => {
+      const chunks = [];
+      stream.on('data', (chunk) => chunks.push(chunk));
+      stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+      stream.on('error', reject);
+    });
+  }
   const reader = stream.getReader();
   const chunks = [];
   while (true) {
     const { done, value } = await reader.read();
     if (done) break;
-    chunks.push(value);
+    if (value) chunks.push(value);
   }
-  return new TextDecoder().decode(Buffer.concat(chunks));
+  const buf = Buffer.concat(chunks);
+  return typeof buf.toString === 'function' ? buf.toString('utf8') : new TextDecoder().decode(buf);
+}
+
+function sendJson(res, status, data) {
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.status(status).end(JSON.stringify(data));
 }
 
 module.exports = async function handler(req, res) {
@@ -39,13 +53,13 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return sendJson(res, 405, { success: false, error: 'Method not allowed' });
   }
 
   let body;
   try {
     let raw = req.body;
-    if (raw === undefined || raw === null || (typeof raw === 'object' && Object.keys(raw).length === 0)) {
+    if (raw === undefined || raw === null || (typeof raw === 'object' && !Array.isArray(raw) && Object.keys(raw).length === 0)) {
       raw = await getRawBody(req);
     }
     if (raw === undefined || raw === null) raw = '';
@@ -55,7 +69,7 @@ module.exports = async function handler(req, res) {
       body = typeof raw === 'string' ? JSON.parse(raw) : raw || {};
     }
   } catch (e) {
-    return res.status(400).json({ success: false, error: 'Invalid JSON' });
+    return sendJson(res, 400, { success: false, error: 'Invalid JSON' });
   }
 
   const trim = (v) => (v == null ? '' : String(v).trim());
@@ -65,10 +79,10 @@ module.exports = async function handler(req, res) {
   const plan = trim(body.plan);
   const message = trim(body.message || '');
 
-  if (!name) return res.status(400).json({ success: false, error: 'Name is required' });
-  if (!phone) return res.status(400).json({ success: false, error: 'Phone is required' });
-  if (!email) return res.status(400).json({ success: false, error: 'Email is required' });
-  if (!plan) return res.status(400).json({ success: false, error: 'Please select a plan' });
+  if (!name) return sendJson(res, 400, { success: false, error: 'Name is required' });
+  if (!phone) return sendJson(res, 400, { success: false, error: 'Phone is required' });
+  if (!email) return sendJson(res, 400, { success: false, error: 'Email is required' });
+  if (!plan) return sendJson(res, 400, { success: false, error: 'Please select a plan' });
 
   const entry = {
     timestamp: new Date().toISOString(),
@@ -82,34 +96,44 @@ module.exports = async function handler(req, res) {
   try {
     let list = [];
     try {
-      const result = await get(BLOB_PATHNAME, { access: 'private' });
-      if (result && result.stream) {
-        const text = await readStreamToText(result.stream);
+      const getOpts = { access: 'private' };
+      const result = await get(BLOB_PATHNAME, getOpts);
+      if (result && (result.stream || result.blob)) {
+        const stream = result.stream || result.blob;
+        const text = await readStreamToText(stream);
         if (text) {
           const parsed = JSON.parse(text);
           if (Array.isArray(parsed)) list = parsed;
         }
       }
     } catch (e) {
-      // No blob yet or read error: start fresh
       list = [];
     }
 
     list.push(entry);
+    const bodyStr = JSON.stringify(list, null, 2);
 
-    await put(BLOB_PATHNAME, JSON.stringify(list, null, 2), {
-      access: 'private',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-    });
+    try {
+      await put(BLOB_PATHNAME, bodyStr, {
+        access: 'private',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+      });
+    } catch (putErr) {
+      await put({
+        pathname: BLOB_PATHNAME,
+        body: bodyStr,
+        access: 'private',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+      });
+    }
 
-    return res.status(200).json({ success: true });
+    return sendJson(res, 200, { success: true });
   } catch (err) {
     console.error('submit_enquiry error', err);
-    const message = err && err.message ? err.message : 'Failed to save enquiry';
-    return res.status(500).json({
-      success: false,
-      error: process.env.BLOB_READ_WRITE_TOKEN ? message : 'Blob storage not configured. Add a Blob store in Vercel project settings.',
-    });
+    const msg = err && err.message ? err.message : 'Failed to save enquiry';
+    const errorMsg = process.env.BLOB_READ_WRITE_TOKEN ? msg : 'Blob storage not configured. Add a Blob store in Vercel project settings.';
+    return sendJson(res, 500, { success: false, error: errorMsg });
   }
 };
