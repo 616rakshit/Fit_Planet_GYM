@@ -42,18 +42,16 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        process.env.REACT_APP_API_BASE_URL
-          ? `${process.env.REACT_APP_API_BASE_URL}/api/enquiry`
-          : 'http://localhost:8000/api/enquiry',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        }
-      );
+      const enquiryUrl = process.env.REACT_APP_API_BASE_URL
+        ? `${process.env.REACT_APP_API_BASE_URL}/submit_enquiry.php`
+        : 'http://localhost:8888/submit_enquiry.php';
+      const response = await fetch(enquiryUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
       if (!response.ok) {
         throw new Error('Failed to submit enquiry');

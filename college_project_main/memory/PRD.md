@@ -7,7 +7,7 @@ Build a high-quality, visually appealing, and interactive gym website whose prim
 ## Project Overview
 - **Product Name**: Fit Planet
 - **Type**: Marketing Website / Landing Page
-- **Tech Stack**: React, FastAPI, MongoDB
+- **Tech Stack**: React, Node (Express)
 - **Design System**: Neon-tech (Black bg #1a1c1b, Lime green accent #d9fb06)
 
 ## User Personas

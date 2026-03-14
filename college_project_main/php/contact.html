@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Fit Planet Gym</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #1a1c1b; color: #eee; margin: 0; padding: 2rem; min-height: 100vh; }
+    .container { max-width: 600px; margin: 0 auto; }
+    h1 { color: #d9fb06; margin-bottom: 0.5rem; }
+    .sub { color: #999; margin-bottom: 2rem; }
+    .success { background: #2a3d2a; color: #d9fb06; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
+    label { display: block; margin-bottom: 0.35rem; color: #ccc; }
+    input, select, textarea { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid #444; border-radius: 6px; background: #252725; color: #fff; font-size: 1rem; }
+    button { width: 100%; padding: 1rem; background: #d9fb06; color: #1a1c1b; border: none; border-radius: 6px; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
+    button:hover { opacity: 0.9; }
+    .required { color: #d9fb06; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Fit Planet Gym</h1>
+    <p class="sub">Send us an enquiry</p>
+
+    <div id="success-msg" class="success" style="display: none;">Thank you! Your enquiry has been saved. We'll get back to you soon.</div>
+
+    <form action="submit_enquiry.php" method="post">
+      <label for="name">Name <span class="required">*</span></label>
+      <input type="text" id="name" name="name" required placeholder="Your full name">
+
+      <label for="phone">Phone <span class="required">*</span></label>
+      <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+
+      <label for="email">Email <span class="required">*</span></label>
+      <input type="email" id="email" name="email" required placeholder="your@email.com">
+
+      <label for="plan">Interested Plan <span class="required">*</span></label>
+      <select id="plan" name="plan" required>
+        <option value="">Select a plan</option>
+        <option value="monthly">Monthly - ₹2,999</option>
+        <option value="quarterly">Quarterly - ₹7,999</option>
+        <option value="yearly">Yearly - ₹24,999</option>
+      </select>
+
+      <label for="message">Message (optional)</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us about your fitness goals..."></textarea>
+
+      <button type="submit">Submit Enquiry</button>
+    </form>
+  </div>
+  <script>
+    if (window.location.search.indexOf('success=1') !== -1) {
+      document.getElementById('success-msg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
