@@ -2,6 +2,21 @@ const { get, put } = require('@vercel/blob');
 
 const BLOB_PATHNAME = 'enquiries.json';
 
+async function getRawBody(req) {
+  if (typeof req.text === 'function') {
+    return await req.text();
+  }
+  if (typeof req.on === 'function') {
+    return new Promise((resolve, reject) => {
+      const chunks = [];
+      req.on('data', (chunk) => chunks.push(chunk));
+      req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+      req.on('error', reject);
+    });
+  }
+  return '';
+}
+
 async function readStreamToText(stream) {
   if (!stream) return '';
   const reader = stream.getReader();
@@ -29,8 +44,17 @@ module.exports = async function handler(req, res) {
 
   let body;
   try {
-    body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
-  } catch {
+    let raw = req.body;
+    if (raw === undefined || raw === null || (typeof raw === 'object' && Object.keys(raw).length === 0)) {
+      raw = await getRawBody(req);
+    }
+    if (raw === undefined || raw === null) raw = '';
+    if (typeof raw === 'string' && !raw.trim()) {
+      body = {};
+    } else {
+      body = typeof raw === 'string' ? JSON.parse(raw) : raw || {};
+    }
+  } catch (e) {
     return res.status(400).json({ success: false, error: 'Invalid JSON' });
   }
 
