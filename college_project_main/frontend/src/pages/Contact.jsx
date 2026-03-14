@@ -42,9 +42,10 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const enquiryUrl = process.env.REACT_APP_API_BASE_URL
-        ? `${process.env.REACT_APP_API_BASE_URL}/submit_enquiry.php`
-        : 'http://localhost:8888/submit_enquiry.php';
+      const base = typeof window !== 'undefined' && window.location?.origin
+        ? window.location.origin
+        : (process.env.REACT_APP_API_BASE_URL || '');
+      const enquiryUrl = `${base}/api/submit_enquiry`;
       const response = await fetch(enquiryUrl, {
         method: 'POST',
         headers: {
