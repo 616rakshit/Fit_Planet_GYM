@@ -54,8 +54,14 @@ const Contact = () => {
         body: JSON.stringify(formData)
       });
 
+      let data = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json().catch(() => ({}));
+      }
       if (!response.ok) {
-        throw new Error('Failed to submit enquiry');
+        const msg = data.error || (response.status === 404 ? 'Enquiry service not available. Deploy to Vercel and add a Blob store.' : 'Failed to submit enquiry');
+        throw new Error(msg);
       }
 
       setIsSuccess(true);
@@ -71,7 +77,8 @@ const Contact = () => {
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (error) {
       console.error('Error submitting enquiry:', error);
-      alert('There was a problem submitting your enquiry. Please try again later.');
+      const message = error instanceof Error ? error.message : 'There was a problem submitting your enquiry. Please try again later.';
+      alert(message);
     } finally {
       setIsSubmitting(false);
     }

@@ -61,10 +61,13 @@ module.exports = async function handler(req, res) {
       const result = await get(BLOB_PATHNAME, { access: 'private' });
       if (result && result.stream) {
         const text = await readStreamToText(result.stream);
-        if (text) list = JSON.parse(text);
-        if (!Array.isArray(list)) list = [];
+        if (text) {
+          const parsed = JSON.parse(text);
+          if (Array.isArray(parsed)) list = parsed;
+        }
       }
-    } catch {
+    } catch (e) {
+      // No blob yet or read error: start fresh
       list = [];
     }
 
@@ -79,6 +82,10 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('submit_enquiry error', err);
-    return res.status(500).json({ success: false, error: 'Failed to save enquiry' });
+    const message = err && err.message ? err.message : 'Failed to save enquiry';
+    return res.status(500).json({
+      success: false,
+      error: process.env.BLOB_READ_WRITE_TOKEN ? message : 'Blob storage not configured. Add a Blob store in Vercel project settings.',
+    });
   }
 };
