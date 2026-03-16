@@ -118,14 +118,14 @@ export const SITE_DATA = {
   gallery: [
     { id: 1, image: galleryImageOne, alt: "Workout Equipment" },
     { id: 2, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/ya9rd6zz6fj8034-bfck66ekyd.jpg?imwidth=463.3333333333333", alt: "Exercise Mat & Weights" },
-    { id: 3, image: "https://images.unsplash.com/photo-1558017487-06bf9f82613a", alt: "Dumbbells & Nutrition" },
-    { id: 4, image: "https://images.unsplash.com/photo-1584827387150-8ae4caebe906", alt: "Strength Equipment" },
-    { id: 5, image: "https://images.unsplash.com/photo-1518644961665-ed172691aaa1", alt: "Partner Training" },
-    { id: 6, image: "https://images.unsplash.com/photo-1758520705189-a6b56a7ae832", alt: "Outdoor Running" },
-    { id: 7, image: "https://images.unsplash.com/photo-1517438984742-1262db08379e", alt: "Athletic Performance" },
-    { id: 8, image: "https://images.unsplash.com/photo-1669989179336-b2234d2878df", alt: "Training Session" },
-    { id: 9, image: "https://images.unsplash.com/photo-1522898467493-49726bf28798", alt: "Functional Training" },
-    { id: 10, image: "https://images.unsplash.com/photo-1483721310020-03333e577078", alt: "Workout Preparation" }
+    { id: 3, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/xxnyl45apn0nmy7-o46z6n9djt.jpg?imwidth=463.3333333333333", alt: "Dumbbells & Nutrition" },
+    { id: 4, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/gmq216qnn1503hd-pw31ojzjhu.jpg?imwidth=463.3333333333333", alt: "Strength Equipment" },
+    { id: 5, image: "hthttps://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/ya9rd6zz6fj8034-bfck66ekyd.jpg?imwidth=463.3333333333333", alt: "Partner Training" },
+    { id: 6, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/idfzqjbpn28l1il-cb99jicu6p.jpg?imwidth=463.3333333333333", alt: "Outdoor Running" },
+    { id: 7, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/tvfdivfeo6gkm55-12r6jikdkm.jpg?imwidth=463.3333333333333", alt: "Athletic Performance" },
+    { id: 8, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/aks94jvska3qznk-wil5wwwk0b.jpg?imwidth=463.3333333333333", alt: "Training Session" },
+    { id: 9, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/gelrdxg6jh6nkl7-tt0qzif67k.jpg?imwidth=463.3333333333333", alt: "Functional Training" },
+    { id: 10, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/di8bgdiq2ck0gzp-htytprld97.jpg?imwidth=463.3333333333333", alt: "Workout Preparation" }
   ],
 
   about: {
