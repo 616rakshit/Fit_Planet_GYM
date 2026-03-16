@@ -115,7 +115,7 @@ export const SITE_DATA = {
 
   gallery: [
     { id: 1, image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2", alt: "Workout Equipment" },
-    { id: 2, image: "https://images.unsplash.com/photo-1591291621060-89264efbeaed", alt: "Exercise Mat & Weights" },
+    { id: 2, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.25101….g8d2/catalogue/ya9rd6zz6fj8034-bfck66ekyd.jpg?imwidth=463.3333333333333", alt: "Exercise Mat & Weights" },
     { id: 3, image: "https://images.unsplash.com/photo-1558017487-06bf9f82613a", alt: "Dumbbells & Nutrition" },
     { id: 4, image: "https://images.unsplash.com/photo-1584827387150-8ae4caebe906", alt: "Strength Equipment" },
     { id: 5, image: "https://images.unsplash.com/photo-1518644961665-ed172691aaa1", alt: "Partner Training" },
