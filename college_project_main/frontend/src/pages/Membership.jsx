@@ -130,6 +130,30 @@ const Membership = () => {
                 Clean and modern facilities for your posing session 
               </p>
             </div>
+            <div style={styles.benefitCard}>
+              <h3 className="heading-4" style={styles.benefitTitle}>
+                PERSONAL TRAINING
+              </h3>
+              <p className="body-small" style={styles.benefitText}>
+                Get expert support and guidance from experienced trainers
+              </p>
+            </div>
+            <div style={styles.benefitCard}>
+              <h3 className="heading-4" style={styles.benefitTitle}>
+                NUTRITION SUPPORT
+              </h3>
+              <p className="body-small" style={styles.benefitText}>
+                Receive practical diet tips to complement your fitness goals
+              </p>
+            </div>
+            <div style={styles.benefitCard}>
+              <h3 className="heading-4" style={styles.benefitTitle}>
+                CLEAN LOCKER AREA
+              </h3>
+              <p className="body-small" style={styles.benefitText}>
+                Fresh and organized changing and locker space for every visit
+              </p>
+            </div>
           </div>
         </div>
       </section>
