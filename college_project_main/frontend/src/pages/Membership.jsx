@@ -84,7 +84,7 @@ const Membership = () => {
           <div className="benefits-grid" style={styles.benefitsGrid}>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                ALL DAY ACCESS
+                ALL YEAR ACCESS
               </h3>
               <p className="body-small" style={styles.benefitText}>
                 Work out on your schedule with round-the-clock gym access
@@ -92,10 +92,10 @@ const Membership = () => {
             </div>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                GROUP CLASSES
+                Certified Trainers Support
               </h3>
               <p className="body-small" style={styles.benefitText}>
-                Join unlimited group fitness classes included with all plans
+                Guidance from certified fitness professionals to help you train safely and effectively.
               </p>
             </div>
             <div style={styles.benefitCard}>
@@ -132,26 +132,18 @@ const Membership = () => {
             </div>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                PERSONAL TRAINING
+                Diet & Nutrition Guidance
               </h3>
               <p className="body-small" style={styles.benefitText}>
-                Get expert support and guidance from experienced trainers
+                Basic nutrition tips to support weight loss and muscle gain.
               </p>
             </div>
-            <div style={styles.benefitCard}>
+             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                NUTRITION SUPPORT
+                Hygienic Environment
               </h3>
               <p className="body-small" style={styles.benefitText}>
-                Receive practical diet tips to complement your fitness goals
-              </p>
-            </div>
-            <div style={styles.benefitCard}>
-              <h3 className="heading-4" style={styles.benefitTitle}>
-                CLEAN LOCKER AREA
-              </h3>
-              <p className="body-small" style={styles.benefitText}>
-                Fresh and organized changing and locker space for every visit
+                Clean and sanitized workout areas for a safe fitness experience.
               </p>
             </div>
           </div>
