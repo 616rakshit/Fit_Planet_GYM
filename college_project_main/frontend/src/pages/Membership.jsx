@@ -92,7 +92,7 @@ const Membership = () => {
             </div>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                Certified Trainers Support
+                CERTIFIED TRAINERS SUPPORT
               </h3>
               <p className="body-small" style={styles.benefitText}>
                 Guidance from certified fitness professionals to help you train safely and effectively.
@@ -132,7 +132,7 @@ const Membership = () => {
             </div>
             <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                Diet & Nutrition Guidance
+                DIET & NUTRITION GUIDANCE
               </h3>
               <p className="body-small" style={styles.benefitText}>
                 Basic nutrition tips to support weight loss and muscle gain.
@@ -140,7 +140,7 @@ const Membership = () => {
             </div>
              <div style={styles.benefitCard}>
               <h3 className="heading-4" style={styles.benefitTitle}>
-                Hygienic Environment
+                HYGIENIC ENVIRONMENT
               </h3>
               <p className="body-small" style={styles.benefitText}>
                 Clean and sanitized workout areas for a safe fitness experience.
