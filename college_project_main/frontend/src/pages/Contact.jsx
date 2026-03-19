@@ -440,6 +440,8 @@ const styles = {
     letterSpacing: '0.05em'
   },
   input: {
+    width: '100%',
+    boxSizing: 'border-box',
     padding: '14px 16px',
     backgroundColor: '#1a1c1b',
     border: '2px solid rgba(63, 72, 22, 0.5)',
@@ -450,6 +452,8 @@ const styles = {
     fontFamily: 'Inter, Arial, sans-serif'
   },
   select: {
+    width: '100%',
+    boxSizing: 'border-box',
     padding: '14px 16px',
     backgroundColor: '#1a1c1b',
     border: '2px solid rgba(63, 72, 22, 0.5)',
@@ -461,6 +465,8 @@ const styles = {
     cursor: 'pointer'
   },
   textarea: {
+    width: '100%',
+    boxSizing: 'border-box',
     padding: '14px 16px',
     backgroundColor: '#1a1c1b',
     border: '2px solid rgba(63, 72, 22, 0.5)',
