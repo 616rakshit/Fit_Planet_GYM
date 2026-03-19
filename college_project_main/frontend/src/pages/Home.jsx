@@ -382,8 +382,8 @@ const styles = {
   },
   membershipGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, minmax(260px, 1fr))',
-    gap: '40px',
+    gridTemplateColumns: 'repeat(4, minmax(220px, 1fr))',
+    gap: '24px',
     alignItems: 'stretch',
     width: '100%',
     maxWidth: '1800px',
@@ -591,11 +591,24 @@ if (typeof document !== 'undefined') {
       font-weight: bold;
     }
     @media (max-width: 768px) {
+      body, html {
+        overflow-x: hidden;
+      }
       .hero-content {
         padding: 80px 20px 60px !important;
       }
       .hero-buttons {
         flex-direction: column;
+      }
+      .membership-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .plan-card {
+        max-width: 100% !important;
+      }
+      .why-card {
+        padding: 24px !important;
       }
       .btn-primary, .btn-secondary {
         width: 100%;
