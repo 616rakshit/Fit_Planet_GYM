@@ -1,11 +1,100 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { SITE_DATA } from '../data/mock';
 import { Zap, Users, Clock, Award, Check } from 'lucide-react';
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [enquiry, setEnquiry] = useState({ name: '', phone: '', email: '' });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const shown = sessionStorage.getItem('homeEnquiryShown');
+    if (!shown) {
+      const timer = window.setTimeout(() => {
+        setShowModal(true);
+        sessionStorage.setItem('homeEnquiryShown', '1');
+      }, 1000);
+      return () => window.clearTimeout(timer);
+    }
+  }, []);
+
+  const handleEnquiryChange = (e) => {
+    const { name, value } = e.target;
+    setEnquiry((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmitEnquiry = (e) => {
+    e.preventDefault();
+    const nextErrors = {};
+    if (!enquiry.name.trim()) nextErrors.name = 'Name is required';
+    if (!enquiry.phone.trim()) nextErrors.phone = 'Phone is required';
+    if (!enquiry.email.trim()) nextErrors.email = 'Email is required';
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
+      return;
+    }
+    navigate('/contact', { state: { name: enquiry.name, phone: enquiry.phone, email: enquiry.email } });
+  };
+
   return (
     <div>
+      {showModal && (
+        <div style={styles.modalOverlay} role="dialog" aria-modal="true" aria-label="Enquiry Form">
+          <div style={styles.modalContent}>
+            <div style={styles.modalHeader}>
+              <div>
+                <h3 style={{ margin: 0 }}>Quick Enquiry</h3>
+                <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: '#d9fb06' }}>Tell us your details and continue to enquiry.</p>
+              </div>
+              <button style={styles.closeButton} onClick={() => setShowModal(false)} aria-label="Close enquiry form">×</button>
+            </div>
+            <form onSubmit={handleSubmitEnquiry} style={{ display: 'grid', gap: '10px' }}>
+              <input
+                autoFocus
+                name="name"
+                value={enquiry.name}
+                onChange={handleEnquiryChange}
+                style={{ ...styles.modalInput, ...(errors.name ? styles.errorInput : {}) }}
+                placeholder="Name"
+              />
+              {errors.name && <span style={styles.errorText}>{errors.name}</span>}
+              <input
+                name="phone"
+                value={enquiry.phone}
+                onChange={handleEnquiryChange}
+                style={{ ...styles.modalInput, ...(errors.phone ? styles.errorInput : {}) }}
+                placeholder="Phone"
+              />
+              {errors.phone && <span style={styles.errorText}>{errors.phone}</span>}
+              <input
+                name="email"
+                value={enquiry.email}
+                onChange={handleEnquiryChange}
+                style={{ ...styles.modalInput, ...(errors.email ? styles.errorInput : {}) }}
+                placeholder="Email"
+              />
+              {errors.email && <span style={styles.errorText}>{errors.email}</span>}
+              <button className="btn-primary" type="submit" style={{ width: '100%', marginTop: '2px' }}>
+                Continue to Enquiry
+              </button>
+              <button
+                type="button"
+                className="btn-secondary"
+                style={{ width: '100%' }}
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="hero-section" style={styles.hero}>
         <div className="hero-bg" style={styles.heroBackground}>
@@ -210,6 +299,55 @@ const styles = {
     display: 'flex',
     gap: '20px',
     flexWrap: 'wrap'
+  },
+  modalOverlay: {
+    position: 'fixed',
+    inset: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    display: 'grid',
+    placeItems: 'center',
+    zIndex: 9999,
+    padding: '16px'
+  },
+  modalContent: {
+    width: '100%',
+    maxWidth: '420px',
+    borderRadius: '12px',
+    padding: '18px',
+    background: '#121212',
+    border: '1px solid rgba(255,255,255,0.15)',
+    boxShadow: '0 16px 40px rgba(0,0,0,0.35)'
+  },
+  modalHeader: {
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'space-between',
+    marginBottom: '12px'
+  },
+  closeButton: {
+    background: 'transparent',
+    border: 'none',
+    color: '#fff',
+    fontSize: '1.4rem',
+    cursor: 'pointer'
+  },
+  modalInput: {
+    width: '100%',
+    borderRadius: '8px',
+    border: '1px solid rgba(255,255,255,0.2)',
+    backgroundColor: '#1a1a1a',
+    color: '#fff',
+    padding: '10px 12px',
+    fontSize: '0.95rem'
+  },
+  errorInput: {
+    borderColor: '#ff4d4d'
+  },
+  errorText: {
+    color: '#ff6b6b',
+    fontSize: '0.8rem',
+    marginTop: '-8px',
+    marginBottom: '4px'
   },
   whySection: {
     padding: '96px 0',
