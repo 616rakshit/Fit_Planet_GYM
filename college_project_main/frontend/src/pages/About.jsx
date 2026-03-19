@@ -201,8 +201,8 @@ const styles = {
   },
   contentGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-    gap: '60px'
+    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gap: '40px'
   },
   textBlock: {
     display: 'flex',
@@ -252,9 +252,9 @@ const styles = {
   },
   valuesGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, minmax(400px, 300px))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
     justifyContent: 'center',
-    gap: '32px'
+    gap: '24px'
   },
   valueCard: {
     padding: '40px 50px',
@@ -323,11 +323,17 @@ if (typeof document !== 'undefined') {
       }
     }
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
       .content-grid {
         grid-template-columns: 1fr !important;
       }
       .values-grid {
         grid-template-columns: 1fr !important;
+      }
+      .facility-card, .value-card, .stat-card {
+        width: 100% !important;
       }
     }
   `;

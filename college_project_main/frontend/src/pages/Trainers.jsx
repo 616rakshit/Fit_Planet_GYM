@@ -116,8 +116,8 @@ const styles = {
   },
   categoryWrapper: {
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '40px',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+    gap: '30px',
     marginBottom: '60px'
   },
   categoryColumn: {
@@ -251,11 +251,17 @@ if (typeof document !== 'undefined') {
       }
     }
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
       .trainers-grid, .qual-grid {
         grid-template-columns: 1fr !important;
       }
       .category-wrapper {
         grid-template-columns: 1fr !important;
+      }
+      .trainer-card, .qual-card {
+        width: 100% !important;
       }
     }
   `;

@@ -382,7 +382,7 @@ const styles = {
   },
   membershipGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, minmax(220px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
     gap: '24px',
     alignItems: 'stretch',
     width: '100%',

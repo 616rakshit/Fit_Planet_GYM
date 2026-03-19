@@ -347,8 +347,8 @@ const styles = {
   },
   contentGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-    gap: '60px'
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '40px'
   },
   infoColumn: {
     display: 'flex',
@@ -496,11 +496,20 @@ if (typeof document !== 'undefined') {
       cursor: not-allowed;
     }
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
       .content-grid {
         grid-template-columns: 1fr !important;
       }
       .form-row {
         grid-template-columns: 1fr !important;
+      }
+      .form-row > div {
+        width: 100% !important;
+      }
+      iframe {
+        max-width: 100% !important;
       }
     }
   `;
