@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SITE_DATA } from '../data/mock';
 import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -13,6 +15,17 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (location?.state) {
+      setFormData((prev) => ({
+        ...prev,
+        name: location.state.name || prev.name,
+        phone: location.state.phone || prev.phone,
+        email: location.state.email || prev.email
+      }));
+    }
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
