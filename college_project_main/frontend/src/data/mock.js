@@ -72,7 +72,7 @@ export const SITE_DATA = {
       features: [
         "Full Access to All Training Areas",
         "Trainer Guidance Available",
-        "Better Value Than Monthly Plan",
+        "More savings Than Short-Term Plans",
         "Strong Commitment = Better Results"
       ],
       popular: false
