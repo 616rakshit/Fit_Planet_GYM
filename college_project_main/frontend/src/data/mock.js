@@ -116,7 +116,7 @@ export const SITE_DATA = {
 
 
   gallery: [
-    { id: 1, image: galleryImageOne, alt: "Workout Equipment" },
+    { id: 1, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/71lxbj4qgp6t9jq-ly197m49b1.jpg?imwidth=463.3333333333333", alt: "Workout Equipment" },
     { id: 2, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/ya9rd6zz6fj8034-bfck66ekyd.jpg?imwidth=463.3333333333333", alt: "Exercise Mat & Weights" },
     { id: 3, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/xxnyl45apn0nmy7-o46z6n9djt.jpg?imwidth=463.3333333333333", alt: "Dumbbells & Nutrition" },
     { id: 4, image: "https://content.jdmagicbox.com/v2/comp/delhi/d2/011pxx11.xx11.251018140053.g8d2/catalogue/gmq216qnn1503hd-pw31ojzjhu.jpg?imwidth=463.3333333333333", alt: "Strength Equipment" },
