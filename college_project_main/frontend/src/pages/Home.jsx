@@ -15,7 +15,7 @@ const Home = () => {
       const timer = window.setTimeout(() => {
         setShowModal(true);
         sessionStorage.setItem('homeEnquiryShown', '1');
-      }, 1000);
+      }, 800);
       return () => window.clearTimeout(timer);
     }
   }, []);
@@ -23,12 +23,10 @@ const Home = () => {
   const handleEnquiryChange = (e) => {
     const { name, value } = e.target;
     setEnquiry((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmitEnquiry = (e) => {
+  const handleEnquirySubmit = (e) => {
     e.preventDefault();
     const nextErrors = {};
     if (!enquiry.name.trim()) nextErrors.name = 'Name is required';
@@ -44,50 +42,44 @@ const Home = () => {
   return (
     <div>
       {showModal && (
-        <div style={styles.modalOverlay} role="dialog" aria-modal="true" aria-label="Enquiry Form">
+        <div style={styles.modalOverlay} aria-modal="true" role="dialog" aria-label="Enquiry Form">
           <div style={styles.modalContent}>
             <div style={styles.modalHeader}>
               <div>
                 <h3 style={{ margin: 0 }}>Quick Enquiry</h3>
-                <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: '#d9fb06' }}>Tell us your details and continue to enquiry.</p>
+                <p style={{ margin: '4px 0 8px', color: '#d9fb06', fontSize: '0.9rem' }}>
+                  Enter your basic details and continue to enquiry.
+                </p>
               </div>
-              <button style={styles.closeButton} onClick={() => setShowModal(false)} aria-label="Close enquiry form">×</button>
+              <button style={styles.closeButton} onClick={() => setShowModal(false)} aria-label="Close">×</button>
             </div>
-            <form onSubmit={handleSubmitEnquiry} style={{ display: 'grid', gap: '10px' }}>
+            <form onSubmit={handleEnquirySubmit} style={{ display: 'grid', gap: '8px' }}>
               <input
-                autoFocus
                 name="name"
                 value={enquiry.name}
                 onChange={handleEnquiryChange}
-                style={{ ...styles.modalInput, ...(errors.name ? styles.errorInput : {}) }}
                 placeholder="Name"
+                style={{ ...styles.modalInput, ...(errors.name ? styles.inputError : {}) }}
               />
               {errors.name && <span style={styles.errorText}>{errors.name}</span>}
               <input
                 name="phone"
                 value={enquiry.phone}
                 onChange={handleEnquiryChange}
-                style={{ ...styles.modalInput, ...(errors.phone ? styles.errorInput : {}) }}
                 placeholder="Phone"
+                style={{ ...styles.modalInput, ...(errors.phone ? styles.inputError : {}) }}
               />
               {errors.phone && <span style={styles.errorText}>{errors.phone}</span>}
               <input
                 name="email"
                 value={enquiry.email}
                 onChange={handleEnquiryChange}
-                style={{ ...styles.modalInput, ...(errors.email ? styles.errorInput : {}) }}
                 placeholder="Email"
+                style={{ ...styles.modalInput, ...(errors.email ? styles.inputError : {}) }}
               />
               {errors.email && <span style={styles.errorText}>{errors.email}</span>}
-              <button className="btn-primary" type="submit" style={{ width: '100%', marginTop: '2px' }}>
-                Continue to Enquiry
-              </button>
-              <button
-                type="button"
-                className="btn-secondary"
-                style={{ width: '100%' }}
-                onClick={() => setShowModal(false)}
-              >
+              <button className="btn-primary" type="submit" style={{ width: '100%' }}>Submit and Continue</button>
+              <button type="button" className="btn-secondary" style={{ width: '100%' }} onClick={() => setShowModal(false)}>
                 Close
               </button>
             </form>
@@ -303,26 +295,26 @@ const styles = {
   modalOverlay: {
     position: 'fixed',
     inset: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0,0,0,0.65)',
     display: 'grid',
     placeItems: 'center',
     zIndex: 9999,
-    padding: '16px'
+    padding: '12px'
   },
   modalContent: {
     width: '100%',
     maxWidth: '420px',
+    backgroundColor: '#1b1b1b',
     borderRadius: '12px',
-    padding: '18px',
-    background: '#121212',
     border: '1px solid rgba(255,255,255,0.15)',
-    boxShadow: '0 16px 40px rgba(0,0,0,0.35)'
+    padding: '18px',
+    boxShadow: '0 18px 45px rgba(0,0,0,0.45)'
   },
   modalHeader: {
     display: 'flex',
-    alignItems: 'start',
     justifyContent: 'space-between',
-    marginBottom: '12px'
+    alignItems: 'flex-start',
+    marginBottom: '10px'
   },
   closeButton: {
     background: 'transparent',
@@ -335,19 +327,18 @@ const styles = {
     width: '100%',
     borderRadius: '8px',
     border: '1px solid rgba(255,255,255,0.2)',
-    backgroundColor: '#1a1a1a',
+    backgroundColor: '#101010',
     color: '#fff',
-    padding: '10px 12px',
-    fontSize: '0.95rem'
-  },
-  errorInput: {
-    borderColor: '#ff4d4d'
+    fontSize: '0.95rem',
+    padding: '10px'
   },
   errorText: {
     color: '#ff6b6b',
     fontSize: '0.8rem',
-    marginTop: '-8px',
-    marginBottom: '4px'
+    margin: '0'
+  },
+  inputError: {
+    borderColor: '#ff4d4d'
   },
   whySection: {
     padding: '96px 0',
