@@ -624,7 +624,7 @@ if (typeof document !== 'undefined') {
         white-space: normal !important;
         word-break: break-word !important;
         margin: 0 auto !important;
-        padding: 0 6px;
+        padding: 0 8px;
       }
     }
   `;
