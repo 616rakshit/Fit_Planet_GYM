@@ -254,7 +254,9 @@ const styles = {
   planCardSelected: {
     borderColor: '#d9fb06',
     backgroundColor: '#302f2c',
-    maxWidth: '300px'
+    transform: 'scale(1.02)',
+    boxShadow: '0 12px 30px rgba(217, 251, 6, 0.28)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
   },
   popularBadge: {
     position: 'absolute',
