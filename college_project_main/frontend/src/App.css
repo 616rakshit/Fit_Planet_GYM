@@ -283,6 +283,29 @@ body {
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .plan-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 26px 18px !important;
+  }
+
+  .plan-card.selected {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .plan-card.selected {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(217, 251, 6, 0.28);
+  }
 }
 
 /* Membership and Contact grids small-phone tweaks */

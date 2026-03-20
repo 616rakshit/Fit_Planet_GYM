@@ -27,6 +27,7 @@ const Membership = () => {
             {SITE_DATA.membershipPlans.map((plan) => (
               <div
                 key={plan.id}
+                className={`plan-card ${selectedPlan === plan.id ? 'selected' : ''}`}
                 style={{
                   ...styles.planCard,
                   ...(plan.popular ? styles.planCardPopular : {}),
