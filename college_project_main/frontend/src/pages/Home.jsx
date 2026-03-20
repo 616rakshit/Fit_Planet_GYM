@@ -228,9 +228,9 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section style={styles.ctaSection}>
+      <section className="cta-section" style={styles.ctaSection}>
         <div style={styles.container}>
-          <h2 className="heading-1" style={styles.ctaTitle}>
+          <h2 className="heading-1 cta-title" style={styles.ctaTitle}>
             READY TO START YOUR TRANSFORMATION?
           </h2>
           <p className="body-large" style={styles.ctaText}>
@@ -612,6 +612,17 @@ if (typeof document !== 'undefined') {
       }
       .btn-primary, .btn-secondary {
         width: 100%;
+      }
+      .cta-section {
+        padding: 90px 18px;
+      }
+      .cta-title {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        margin: 0 auto !important;
       }
     }
   `;
