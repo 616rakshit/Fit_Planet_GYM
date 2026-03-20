@@ -616,15 +616,20 @@ if (typeof document !== 'undefined') {
       .cta-section {
         padding: 90px 18px;
       }
+      .cta-section > div {
+        max-width: 720px !important;
+        padding: 0 10px !important;
+        margin: 0 auto !important;
+      }
       .cta-title {
-        font-size: clamp(1.1rem, 7.2vw, 1.85rem) !important;
+        font-size: clamp(1.15rem, 7vw, 1.95rem) !important;
         line-height: 1.2 !important;
         max-width: 100% !important;
-        width: min(100%, 500px) !important;
+        width: 100% !important;
         white-space: normal !important;
         word-break: break-word !important;
         margin: 0 auto !important;
-        padding: 0 10px;
+        padding: 0 2px;
       }
     }
   `;
