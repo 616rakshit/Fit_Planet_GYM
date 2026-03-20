@@ -259,22 +259,43 @@ body {
 @media (max-width: 768px) {
   .hero-section {
     min-height: auto;
-    padding: 100px 0 60px;
+    padding: 70px 0 40px;
+    overflow: hidden;
   }
 
   .hero-content {
-    padding: 80px 20px 60px;
+    padding: 40px 16px 36px;
     text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .brand-display,
+  .heading-1,
+  .heading-2 {
+    font-size: clamp(1.8rem, 8vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+
+  .body-large {
+    font-size: 1rem;
+    line-height: 1.4;
+    max-width: 95vw;
+    margin: 0 auto;
   }
 
   .hero-buttons {
     flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
 
   .hero-buttons .btn-primary,
   .hero-buttons .btn-secondary {
     width: 100%;
+    font-size: 0.9rem;
+    padding: 0.75em 1.2em;
   }
 
   .why-grid,
@@ -292,12 +313,19 @@ body {
   .plan-card {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 26px 18px !important;
+    padding: 24px 16px !important;
   }
 
   .plan-card.selected {
     transform: none !important;
     box-shadow: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .plan-card.selected {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(217, 251, 6, 0.28);
   }
 }
 
