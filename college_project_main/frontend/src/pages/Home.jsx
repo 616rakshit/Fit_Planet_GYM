@@ -617,12 +617,13 @@ if (typeof document !== 'undefined') {
         padding: 90px 18px;
       }
       .cta-title {
-        font-size: 2rem !important;
-        line-height: 1.2 !important;
+        font-size: clamp(1.3rem, 7.5vw, 2rem) !important;
+        line-height: 1.15 !important;
         max-width: 100% !important;
         white-space: normal !important;
         word-break: break-word !important;
         margin: 0 auto !important;
+        padding: 0 4px;
       }
     }
   `;
