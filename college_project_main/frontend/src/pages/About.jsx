@@ -5,7 +5,7 @@ import { CheckCircle } from 'lucide-react';
 const STATS_DATA = [
   { value: 300, suffix: '+', label: 'Active Members' },
   { value: 450, suffix: '+', label: 'Positive Result' },
-  { value: 7, suffix: '+', label: 'Experience' },
+  { value: 7, suffix: 'YRS+', label: 'Experience' },
   { value: 100, suffix: '%', label: 'Result' }
 ];
 
