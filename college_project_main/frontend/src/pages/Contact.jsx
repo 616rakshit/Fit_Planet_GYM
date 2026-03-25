@@ -280,9 +280,9 @@ const Contact = () => {
                     }}
                   >
                     <option value="">Select a plan</option>
-                    <option value="monthly">Monthly - ₹2,999</option>
-                    <option value="quarterly">Quarterly - ₹7,999</option>
-                    <option value="yearly">Yearly - ₹24,999</option>
+                    <option value="monthly">Monthly - ₹1,800</option>
+                    <option value="quarterly">Quarterly - ₹4,500</option>
+                    <option value="yearly">Yearly - ₹16,500</option>
                   </select>
                   {errors.plan && <span style={styles.errorText}>{errors.plan}</span>}
                 </div>
