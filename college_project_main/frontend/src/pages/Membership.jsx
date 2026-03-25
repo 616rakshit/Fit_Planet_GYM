@@ -211,9 +211,12 @@ const styles = {
   margin: '0 auto',
   padding: '0 40px'
 },
-  pageTitle: {
-    marginBottom: '24px'
-  },
+pageTitle: {
+  marginBottom: '24px',
+  fontSize: 'clamp(28px, 5vw, 56px)', // ✅ responsive size
+  textAlign: 'center',
+  lineHeight: 1.2,
+},
   heroText: {
     color: '#888680',
     maxWidth: '700px',
