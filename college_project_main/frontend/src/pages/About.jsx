@@ -256,23 +256,32 @@ const styles = {
     justifyContent: 'center',
     gap: '24px'
   },
-  valueCard: {
-    padding: '40px 50px',
-    backgroundColor: '#1a1c1b',
-    borderRadius: '8px',
-    border: '2px solid rgba(63, 72, 22, 0.5)',
-    transition: 'transform 0.3s ease, border-color 0.3s ease',
-    cursor: 'pointer'
-  },
-  valueTitle: {
-    marginBottom: '16px',
-    color: '#d9fb06',
-    textAlign: 'center'
-  },
-  valueText: {
-    color: '#888680',
-    lineHeight: 1.6
-  },
+valueCard: {
+  padding: '40px 50px',
+  backgroundColor: '#1a1c1b',
+  borderRadius: '8px',
+  border: '2px solid rgba(63, 72, 22, 0.5)',
+  transition: 'transform 0.3s ease, border-color 0.3s ease',
+  cursor: 'pointer',
+
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+},
+
+valueTitle: {
+  marginBottom: '16px',
+  color: '#d9fb06',
+  textAlign: 'center',
+},
+
+valueText: {
+  color: '#888680',
+  lineHeight: 1.6,
+  textAlign: 'center',
+},
   statsSection: {
     padding: '96px 0',
     backgroundColor: '#1a1c1b'
