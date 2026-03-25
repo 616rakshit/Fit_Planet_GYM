@@ -206,10 +206,10 @@ const styles = {
     backgroundColor: '#1a1c1b',
     textAlign: 'center'
   },
- container: {
-  maxWidth: '1800px',  // ✅ gives enough space for 4 cards
+container: {
+  maxWidth: '1400px',   // ✅ reduce from 1800
   margin: '0 auto',
-  padding: '0 40px'
+  padding: '0 20px'
 },
 pageTitle: {
   marginBottom: '24px',
@@ -228,28 +228,28 @@ pageTitle: {
     display: 'flex',
     justifyContent: 'center'
   },
- plansGrid: {
+plansGrid: {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-  gap: '40px',
-  alignItems: 'stretch',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: '30px',
   width: '100%',
-  maxWidth: '1800px',
+  maxWidth: '1200px',   // ✅ controls layout center
   margin: '0 auto',
   justifyItems: 'center'
 },
  planCard: {
   backgroundColor: '#1a1c1b',
-  padding: '40px 40px',
+  padding: '40px 30px',
   borderRadius: '12px',
   border: '2px solid rgba(63, 72, 22, 0.5)',
-  position: 'relative', // ✅ (your "center" was invalid)
+  position: 'relative',
   transition: 'transform 0.3s ease, border-color 0.3s ease',
   cursor: 'pointer',
   display: 'flex',
   flexDirection: 'column',
-  width: '100%',        // ✅ fill grid cell
-  maxWidth: '400px',     // ✅ keeps card size consistent
+
+  width: '100%',
+  maxWidth: '320px',   // ✅ important for proper alignment
 },
   planCardPopular: {
     borderColor: '#d9fb06',
@@ -386,26 +386,26 @@ pageTitle: {
 
 // Hover effects
 if (typeof document !== 'undefined') {
-  const hoverStyles = `
-    @media (min-width: 769px) {
-      .plan-card:hover {
-        transform: scale(1.05);
-        border-color: #d9fb06;
-      }
-      .benefit-card:hover {
-        transform: translateY(-8px);
-        background-color: #3f4816;
-      }
+const hoverStyles = `
+  @media (min-width: 1024px) {
+    .plan-card:hover {
+      transform: scale(1.05);
+      border-color: #d9fb06;
     }
-    @media (max-width: 768px) {
-      .plans-grid {
-        grid-template-columns: 1fr !important;
-      }
-      .faq-grid {
-        grid-template-columns: 1fr !important;
-      }
+  }
+
+  @media (max-width: 1024px) {
+    .plans-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
     }
-  `;
+  }
+
+  @media (max-width: 768px) {
+    .plans-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+`;
   const styleSheet = document.createElement('style');
   styleSheet.textContent = hoverStyles;
   document.head.appendChild(styleSheet);
