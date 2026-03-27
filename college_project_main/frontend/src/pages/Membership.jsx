@@ -262,7 +262,7 @@ planCardPopular: {
   planCardSelected: {
     borderColor: '#d9fb06',
     backgroundColor: '#302f2c',
-    transform: 'scale(1.02)',
+    transform: 'scale(1.05)',
     boxShadow: '0 12px 30px rgba(217, 251, 6, 0.28)',
     transition: 'transform 0.2s ease, box-shadow 0.2s ease'
   },
@@ -402,18 +402,17 @@ const hoverStyles = `
   }
 
   /* ✅ FORCE PERFECT 4 EQUAL COLUMNS */
-  .plans-grid {
+ .plans-grid {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    align-items: stretch;
+    grid-template-columns: repeat(4, minmax(260px, 300px)) !important;
+    justify-content: center;
+    gap: 30px;
   }
 
-  /* ✅ CRITICAL FIX (prevents width stretching) */
   .plans-grid > * {
-    min-width: 0 !important;
+    min-width: 0;
   }
 }
-
 /* ✅ RESTORE tablet layout */
 @media (max-width: 1024px) {
   .plans-grid {
