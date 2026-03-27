@@ -254,10 +254,11 @@ planCard: {
   boxSizing: 'border-box',
 },
 
-  planCardPopular: {
-    borderColor: '#d9fb06',
-    transform: 'scale(1.05)'
-  },
+planCardPopular: {
+  borderColor: '#d9fb06',
+},
+
+
   planCardSelected: {
     borderColor: '#d9fb06',
     backgroundColor: '#302f2c',
@@ -394,47 +395,36 @@ featureText: {
 // Hover effects
 if (typeof document !== 'undefined') {
 const hoverStyles = `
- @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   .plan-card:hover {
     transform: scale(1.05);
     border-color: #d9fb06;
   }
 
-  /* ✅ Desktop: 4 in one row */
-  .plans-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    align-items: stretch;
-  }
-}
-
-@media (min-width: 1024px) {
+  /* ✅ FORCE PERFECT 4 EQUAL COLUMNS */
   .plans-grid {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: stretch;
+  }
+
+  /* ✅ CRITICAL FIX (prevents width stretching) */
+  .plans-grid > * {
+    min-width: 0 !important;
   }
 }
 
+/* ✅ RESTORE tablet layout */
+@media (max-width: 1024px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
 
+/* ✅ mobile layout */
 @media (max-width: 768px) {
   .plans-grid {
     grid-template-columns: 1fr !important;
   }
 }
-
-
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = hoverStyles;
-  document.head.appendChild(styleSheet);
-}
-
-// Apply classes
-if (typeof document !== 'undefined') {
-  setTimeout(() => {
-    document.querySelectorAll('[style*="planCard"]').forEach(el => el.classList.add('plan-card'));
-    document.querySelectorAll('[style*="benefitCard"]').forEach(el => el.classList.add('benefit-card'));
-    document.querySelectorAll('[style*="plansGrid"]').forEach(el => el.classList.add('plans-grid'));
-    document.querySelectorAll('[style*="faqGrid"]').forEach(el => el.classList.add('faq-grid'));
-  }, 100);
-}
-
-export default Membership;
+`;
