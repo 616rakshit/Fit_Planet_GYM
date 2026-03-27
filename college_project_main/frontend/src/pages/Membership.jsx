@@ -213,7 +213,8 @@ container: {
 },
 pageTitle: {
   marginBottom: '24px',
-  fontSize: 'clamp(28px, 5vw, 56px)', // ✅ responsive size
+  fontSize: 'clamp(36px, 6vw, 80px)',
+ // ✅ responsive size
   textAlign: 'center',
   lineHeight: 1.2,
 },
@@ -397,7 +398,7 @@ featureText: {
 if (typeof document !== 'undefined') {
   const hoverStyles = `
     @media (min-width: 1024px) {
-      .plan-card:hover {
+        .plan-card:hover {
         transform: scale(1.05);
         border-color: #d9fb06;
       }
