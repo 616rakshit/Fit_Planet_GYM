@@ -251,6 +251,7 @@ planCard: {
 
   width: '100%',
   minWidth: 0,   // ✅ VERY IMPORTANT (fixes flex/grid overflow bug)
+  boxSizing: 'border-box',
 },
 
   planCardPopular: {
@@ -406,11 +407,13 @@ const hoverStyles = `
   }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .plans-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
+
 
 @media (max-width: 768px) {
   .plans-grid {
