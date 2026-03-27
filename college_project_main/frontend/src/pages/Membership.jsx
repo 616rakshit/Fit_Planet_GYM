@@ -23,7 +23,7 @@ const Membership = () => {
       {/* Pricing Section */}
       <section style={styles.pricingSection}>
         <div style={styles.container}>
-          <div className="body-large" style={styles.plansGrid}>
+          <div className="plans-grid" style={styles.plansGrid}>
             {SITE_DATA.membershipPlans.map((plan) => (
               <div
                 key={plan.id}
