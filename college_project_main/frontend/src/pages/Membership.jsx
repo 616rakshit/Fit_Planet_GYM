@@ -238,7 +238,7 @@ plansGrid: {
 },
 
 
- planCard: {
+planCard: {
   backgroundColor: '#1a1c1b',
   padding: '40px 30px',
   borderRadius: '12px',
@@ -250,8 +250,9 @@ plansGrid: {
   flexDirection: 'column',
 
   width: '100%',
-  maxWidth: '320px',   // ✅ important for proper alignment
+  minWidth: 0,   // ✅ VERY IMPORTANT (fixes flex/grid overflow bug)
 },
+
   planCardPopular: {
     borderColor: '#d9fb06',
     transform: 'scale(1.05)'
@@ -279,11 +280,13 @@ plansGrid: {
   planHeader: {
     marginBottom: '32px'
   },
-  planName: {
-    marginBottom: '16px',
-    color: '#d9fb06',
-    whiteSpace: 'nowrap'
-  },
+planName: {
+  marginBottom: '16px',
+  color: '#d9fb06',
+  whiteSpace: 'normal',   // ❌ remove nowrap
+  textAlign: 'center'
+},
+
   planPricing: {
     display: 'flex',
     flexDirection: 'column',
@@ -326,11 +329,13 @@ plansGrid: {
     flexShrink: 0,
     marginTop: '2px'
   },
-  featureText: {
-    color: '#dfddd6',
-    fontSize: '1rem',
-    lineHeight: 1.5
-  },
+featureText: {
+  color: '#dfddd6',
+  fontSize: '1rem',
+  lineHeight: 1.5,
+  wordBreak: 'break-word'   // ✅ prevents width stretch
+},
+
   benefitsSection: {
     padding: '96px 0',
     backgroundColor: '#1a1c1b'
@@ -396,7 +401,7 @@ const hoverStyles = `
 
   /* ✅ Desktop: 4 in one row */
   .plans-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
     align-items: stretch;
   }
 }
