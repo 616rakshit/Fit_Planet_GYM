@@ -70,7 +70,7 @@ export const SITE_DATA = {
       price: "₹8,800",
       duration: "6 months",
       features: [
-        "Full Access to All Training Areas",
+        "Full Gym Access to All Areas",
         "Trainer Guidance Available",
         "More savings Than Short-Term Plans",
         "Strong Commitment = Better Results"
