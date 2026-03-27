@@ -234,10 +234,9 @@ plansGrid: {
   width: '100%',
   maxWidth: '1200px',
   margin: '0 auto',
-  justifyItems: 'center',
-
   gridTemplateColumns: '1fr',
 },
+
 
  planCard: {
   backgroundColor: '#1a1c1b',
@@ -389,31 +388,31 @@ plansGrid: {
 // Hover effects
 if (typeof document !== 'undefined') {
 const hoverStyles = `
-  @media (min-width: 1024px) {
-    .plan-card:hover {
-      transform: scale(1.05);
-      border-color: #d9fb06;
-    }
-
-    /* ✅ FORCE SINGLE ROW ON LAPTOP/DESKTOP */
-    .plans-grid {
-      grid-template-columns: repeat(4, 1fr) !important;
-      align-items: stretch;
-    }
+ @media (min-width: 1024px) {
+  .plan-card:hover {
+    transform: scale(1.05);
+    border-color: #d9fb06;
   }
 
-  @media (max-width: 1024px) {
-    .plans-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+  /* ✅ Desktop: 4 in one row */
+  .plans-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    align-items: stretch;
   }
+}
 
-  @media (max-width: 768px) {
-    .plans-grid {
-      grid-template-columns: 1fr !important;
-    }
+@media (max-width: 1024px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
-`;
+}
+
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 
   const styleSheet = document.createElement('style');
   styleSheet.textContent = hoverStyles;
