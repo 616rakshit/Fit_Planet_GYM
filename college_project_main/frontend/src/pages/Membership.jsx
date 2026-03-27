@@ -230,13 +230,15 @@ pageTitle: {
   },
 plansGrid: {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
   gap: '30px',
   width: '100%',
-  maxWidth: '1200px',   // ✅ controls layout center
+  maxWidth: '1200px',
   margin: '0 auto',
-  justifyItems: 'center'
+  justifyItems: 'center',
+
+  gridTemplateColumns: '1fr',
 },
+
  planCard: {
   backgroundColor: '#1a1c1b',
   padding: '40px 30px',
@@ -392,6 +394,12 @@ const hoverStyles = `
       transform: scale(1.05);
       border-color: #d9fb06;
     }
+
+    /* ✅ FORCE SINGLE ROW ON LAPTOP/DESKTOP */
+    .plans-grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+      align-items: stretch;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -406,6 +414,7 @@ const hoverStyles = `
     }
   }
 `;
+
   const styleSheet = document.createElement('style');
   styleSheet.textContent = hoverStyles;
   document.head.appendChild(styleSheet);
