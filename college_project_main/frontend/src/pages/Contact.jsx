@@ -399,8 +399,8 @@ const styles = {
   },
   mapPin: {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
+    top: '55%',
+    left: '60%',
     transform: 'translate(-50%, -100%)',
     pointerEvents: 'none'
   },
