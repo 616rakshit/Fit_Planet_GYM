@@ -389,11 +389,7 @@ const styles = {
     overflow: 'hidden',
     border: '1px solid rgba(63, 72, 22, 0.5)'
   },
-  mapWrapper: {
-    position: 'relative',
-    width: '100%',
-    height: '300px'
-  },
+  
   pinHider: {
     position: 'absolute',
     top: '50%',
