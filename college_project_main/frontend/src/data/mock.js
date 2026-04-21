@@ -148,7 +148,7 @@ export const SITE_DATA = {
     phone: "+91 9650161386 , +91 9821900471",
     email: "fitplanetgym1386@gmail.com",
     hours: " 18/7 Access • Open Every Day",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d231.01716383075987!2d77.09949916040897!3d28.6650884505777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1772122516653!5m2!1sen!2sin"
+    mapEmbed:"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d218.8013667161586!2d77.099509!3d28.6650519!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d05f20a05c057%3A0x750b6d6b4f585575!2sFit%20Planet%20Gym!5e0!3m2!1sen!2sin!4v1776753643134!5m2!1sen!2sin"
   },
 
   testimonials: [
