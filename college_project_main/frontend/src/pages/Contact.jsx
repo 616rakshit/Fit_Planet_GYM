@@ -184,6 +184,7 @@ const Contact = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Gym Location"
                   ></iframe>
+                  <div style={styles.pinHider} aria-hidden="true" />
                 </div>
               </div>
             </div>
@@ -392,6 +393,18 @@ const styles = {
     position: 'relative',
     width: '100%',
     height: '300px'
+  },
+  pinHider: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    width: '56px',
+    height: '56px',
+    transform: 'translate(-50%, -50%)',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(242, 242, 242, 0.95)',
+    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.25)',
+    pointerEvents: 'none'
   },
   map: {
     border: 'none',
