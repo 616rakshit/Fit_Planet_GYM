@@ -184,10 +184,6 @@ const Contact = () => {
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Gym Location"
                   ></iframe>
-
-                  <div style={styles.mapPin}>
-                    <MapPin size={40} color="#FF0000" />
-                  </div>
                 </div>
               </div>
             </div>
@@ -396,13 +392,6 @@ const styles = {
     position: 'relative',
     width: '100%',
     height: '300px'
-  },
-  mapPin: {
-    position: 'absolute',
-    top: '55%',
-    left: '60%',
-    transform: 'translate(-50%, -100%)',
-    pointerEvents: 'none'
   },
   map: {
     border: 'none',
