@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SITE_DATA } from '../data/mock';
 import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
 const Contact = () => {
   const location = useLocation();
@@ -173,18 +174,17 @@ const Contact = () => {
 
               {/* Map */}
               <div style={styles.mapContainer}>
-                <div style={styles.mapWrapper}>
-                  <iframe
-                    src={SITE_DATA.contact.mapEmbed}
-                    width="100%"
-                    height="450"
-                    style={styles.map}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Gym Location"
-                  ></iframe>
-                </div>
+                <MapContainer
+                  center={[28.670784349999998, 77.11399785]}
+                  zoom={14}
+                  scrollWheelZoom={false}
+                  style={{ height: 450, width: '100%' }}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                </MapContainer>
               </div>
             </div>
 
