@@ -233,7 +233,8 @@ plansGrid: {
   display: 'grid',
   gap: '30px',
   width: '100%',
-  maxWidth: '1200px',
+  // Wider container so cards can be larger on desktop
+  maxWidth: '1480px',
   margin: '0 auto',
   gridTemplateColumns: '1fr',
 },
@@ -241,8 +242,8 @@ plansGrid: {
 
 planCard: {
   backgroundColor: '#1a1c1b',
-  padding: '40px 30px',
-  borderRadius: '12px',
+  padding: '48px 36px',
+  borderRadius: '14px',
   border: '2px solid rgba(63, 72, 22, 0.5)',
   position: 'relative',
   transition: 'transform 0.3s ease, border-color 0.3s ease',
@@ -403,12 +404,12 @@ if (typeof document !== 'undefined') {
         border-color: #d9fb06;
       }
 
-      /* ✅ Desktop: 4 equal cards, centered, fixed width */
+      /* ✅ Desktop: 4 equal cards, centered, larger fixed width */
       .plans-grid {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(260px, 300px)) !important;
+        grid-template-columns: repeat(4, minmax(300px, 360px)) !important;
         justify-content: center;
-        gap: 30px;
+        gap: 36px;
       }
 
       /* ✅ Prevent content from stretching cards */
