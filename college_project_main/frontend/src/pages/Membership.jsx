@@ -234,7 +234,7 @@ plansGrid: {
   gap: '30px',
   width: '100%',
   // Wider container so cards can be larger on desktop
-  maxWidth: '1600px',
+  maxWidth: '1760px',
   margin: '0 auto',
   gridTemplateColumns: '1fr',
 },
@@ -408,7 +408,7 @@ if (typeof document !== 'undefined') {
       /* ✅ Desktop: 4 equal cards, centered, larger fixed width */
       .plans-grid {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(320px, 380px)) !important;
+        grid-template-columns: repeat(4, minmax(360px, 420px)) !important;
         justify-content: center;
         gap: 40px;
       }
