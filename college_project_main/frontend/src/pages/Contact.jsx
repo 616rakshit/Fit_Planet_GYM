@@ -177,14 +177,13 @@ const Contact = () => {
                   <iframe
                     src={SITE_DATA.contact.mapEmbed}
                     width="100%"
-                    height="300"
+                    height="450"
                     style={styles.map}
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Gym Location"
                   ></iframe>
-                  <div style={styles.pinHider} aria-hidden="true" />
                 </div>
               </div>
             </div>
@@ -388,19 +387,6 @@ const styles = {
     borderRadius: '8px',
     overflow: 'hidden',
     border: '1px solid rgba(63, 72, 22, 0.5)'
-  },
-  
-  pinHider: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    width: '56px',
-    height: '56px',
-    transform: 'translate(-50%, -50%)',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(242, 242, 242, 0.95)',
-    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.25)',
-    pointerEvents: 'none'
   },
   map: {
     border: 'none',
