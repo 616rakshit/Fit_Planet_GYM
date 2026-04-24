@@ -37,7 +37,7 @@ export const SITE_DATA = {
   membershipPlans: [
     {
       id: 1,
-      name: "MONTHLY",
+      name: "  MONTHLY   ",
       oldPrice: "₹2500",
       price: "₹1,800",
       duration: "per month",
