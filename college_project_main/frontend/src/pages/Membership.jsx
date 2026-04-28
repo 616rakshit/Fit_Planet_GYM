@@ -207,9 +207,9 @@ const styles = {
     textAlign: 'center'
   },
 container: {
-  maxWidth: '1400px',   // ✅ reduce from 1800
+  maxWidth: '1800px',
   margin: '0 auto',
-  padding: '0 20px'
+  padding: '0 40px'
 },
 pageTitle: {
   marginBottom: '24px',
@@ -231,40 +231,40 @@ pageTitle: {
   },
 plansGrid: {
   display: 'grid',
-  gap: '28px',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+  gap: '24px',
+  alignItems: 'stretch',
   width: '100%',
-  maxWidth: '1280px',
+  maxWidth: '1800px',
   margin: '0 auto',
-  gridTemplateColumns: '1fr',
+  justifyItems: 'center'
 },
 
 
 planCard: {
   backgroundColor: '#1a1c1b',
-  padding: '36px 28px',
+  padding: '40px 40px',
   borderRadius: '12px',
   border: '2px solid rgba(63, 72, 22, 0.5)',
   position: 'relative',
-  transition: 'box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease',
+  transition: 'transform 0.3s ease, border-color 0.3s ease',
   cursor: 'pointer',
   display: 'flex',
   flexDirection: 'column',
 
   width: '100%',
-  minWidth: 0,   // ✅ VERY IMPORTANT (fixes flex/grid overflow bug)
-  boxSizing: 'border-box',
+  maxWidth: '400px'
 },
 
 planCardPopular: {
   borderColor: '#d9fb06',
+  transform: 'scale(1.05)'
 },
 
 
   planCardSelected: {
     borderColor: '#d9fb06',
-    backgroundColor: '#302f2c',
-    boxShadow: '0 12px 30px rgba(217, 251, 6, 0.28)',
-    transition: 'box-shadow 0.2s ease'
+    backgroundColor: '#302f2c'
   },
   popularBadge: {
     position: 'absolute',
@@ -280,25 +280,22 @@ planCardPopular: {
     letterSpacing: '0.1em'
   },
   planHeader: {
-    marginBottom: '24px',
-    textAlign: 'center'
+    marginBottom: '32px'
   },
 planName: {
-  marginBottom: '10px',
+  marginBottom: '16px',
   color: '#d9fb06',
-  whiteSpace: 'normal',   // ❌ remove nowrap
-  textAlign: 'center'
+  whiteSpace: 'nowrap'
 },
 
   planPricing: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'baseline',
-    justifyContent: 'center',
     gap: '8px'
   },
   oldPrice: {
-    marginBottom: '6px',
-    textAlign: 'center'
+    marginBottom: '8px'
   },
   oldPriceText: {
     fontSize: '1.25rem',
@@ -307,7 +304,7 @@ planName: {
     fontWeight: 400
   },
   priceAmount: {
-    fontSize: '3.25rem',
+    fontSize: '3.5rem',
     fontWeight: 900,
     color: '#d9fb06',
     lineHeight: 1
@@ -318,11 +315,11 @@ planName: {
   },
   featuresList: {
     listStyle: 'none',
-    marginBottom: '28px',
+    marginBottom: '40px',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: '14px'
+    gap: '16px'
   },
   featureItem: {
     display: 'flex',
@@ -336,8 +333,7 @@ planName: {
 featureText: {
   color: '#dfddd6',
   fontSize: '1rem',
-  lineHeight: 1.55,
-  wordBreak: 'break-word'   // ✅ prevents width stretch
+  lineHeight: 1.5
 },
 
   benefitsSection: {
@@ -398,37 +394,27 @@ featureText: {
 // Hover + responsive styles (ONLY ONE BLOCK)
 if (typeof document !== 'undefined') {
   const hoverStyles = `
-    @media (min-width: 1024px) {
+    @media (min-width: 769px) {
       .plan-card:hover {
+        transform: scale(1.05);
         border-color: #d9fb06;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-      }
-
-      /* ✅ Desktop: 4 equal cards, centered, fixed width */
-      .plans-grid {
-        display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        justify-content: center;
-        gap: 28px;
-      }
-
-      /* ✅ Prevent content from stretching cards */
-      .plans-grid > * {
-        min-width: 0;
-      }
-    }
-
-    /* ✅ Tablet */
-    @media (max-width: 1024px) {
-      .plans-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
       }
     }
 
     /* ✅ Mobile */
     @media (max-width: 768px) {
+      body, html {
+        overflow-x: hidden;
+      }
       .plans-grid {
         grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+      .plan-card {
+        max-width: 100% !important;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
       }
     }
   `;
