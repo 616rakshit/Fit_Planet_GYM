@@ -41,7 +41,7 @@ const Membership = () => {
                 
                 <div style={styles.planHeader}>
                   <h2 className="heading-3" style={styles.planName}>
-                    {plan.name}
+                    {String(plan.name).trim()}
                   </h2>
                   {plan.oldPrice && (
                     <div style={styles.oldPrice}>
@@ -231,9 +231,9 @@ pageTitle: {
   },
 plansGrid: {
   display: 'grid',
-  gap: '30px',
+  gap: '28px',
   width: '100%',
-  maxWidth: '1200px',
+  maxWidth: '1280px',
   margin: '0 auto',
   gridTemplateColumns: '1fr',
 },
@@ -241,11 +241,11 @@ plansGrid: {
 
 planCard: {
   backgroundColor: '#1a1c1b',
-  padding: '40px 30px',
+  padding: '36px 28px',
   borderRadius: '12px',
   border: '2px solid rgba(63, 72, 22, 0.5)',
   position: 'relative',
-  transition: 'transform 0.3s ease, border-color 0.3s ease',
+  transition: 'box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease',
   cursor: 'pointer',
   display: 'flex',
   flexDirection: 'column',
@@ -263,9 +263,8 @@ planCardPopular: {
   planCardSelected: {
     borderColor: '#d9fb06',
     backgroundColor: '#302f2c',
-    transform: 'scale(1.05)',
     boxShadow: '0 12px 30px rgba(217, 251, 6, 0.28)',
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+    transition: 'box-shadow 0.2s ease'
   },
   popularBadge: {
     position: 'absolute',
@@ -281,10 +280,11 @@ planCardPopular: {
     letterSpacing: '0.1em'
   },
   planHeader: {
-    marginBottom: '32px'
+    marginBottom: '24px',
+    textAlign: 'center'
   },
 planName: {
-  marginBottom: '16px',
+  marginBottom: '10px',
   color: '#d9fb06',
   whiteSpace: 'normal',   // ❌ remove nowrap
   textAlign: 'center'
@@ -292,12 +292,13 @@ planName: {
 
   planPricing: {
     display: 'flex',
-    flexDirection: 'column',
     alignItems: 'baseline',
+    justifyContent: 'center',
     gap: '8px'
   },
   oldPrice: {
-    marginBottom: '8px'
+    marginBottom: '6px',
+    textAlign: 'center'
   },
   oldPriceText: {
     fontSize: '1.25rem',
@@ -306,7 +307,7 @@ planName: {
     fontWeight: 400
   },
   priceAmount: {
-    fontSize: '3.5rem',
+    fontSize: '3.25rem',
     fontWeight: 900,
     color: '#d9fb06',
     lineHeight: 1
@@ -317,11 +318,11 @@ planName: {
   },
   featuresList: {
     listStyle: 'none',
-    marginBottom: '40px',
+    marginBottom: '28px',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: '16px'
+    gap: '14px'
   },
   featureItem: {
     display: 'flex',
@@ -335,7 +336,7 @@ planName: {
 featureText: {
   color: '#dfddd6',
   fontSize: '1rem',
-  lineHeight: 1.5,
+  lineHeight: 1.55,
   wordBreak: 'break-word'   // ✅ prevents width stretch
 },
 
@@ -398,17 +399,17 @@ featureText: {
 if (typeof document !== 'undefined') {
   const hoverStyles = `
     @media (min-width: 1024px) {
-        .plan-card:hover {
-        transform: scale(1.05);
+      .plan-card:hover {
         border-color: #d9fb06;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
       }
 
       /* ✅ Desktop: 4 equal cards, centered, fixed width */
       .plans-grid {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(260px, 300px)) !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
         justify-content: center;
-        gap: 30px;
+        gap: 28px;
       }
 
       /* ✅ Prevent content from stretching cards */
