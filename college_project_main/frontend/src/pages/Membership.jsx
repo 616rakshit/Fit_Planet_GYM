@@ -233,8 +233,7 @@ plansGrid: {
   display: 'grid',
   gap: '30px',
   width: '100%',
-  // Wider container so cards can be larger on desktop
-  maxWidth: '1760px',
+  maxWidth: '1200px',
   margin: '0 auto',
   gridTemplateColumns: '1fr',
 },
@@ -242,15 +241,14 @@ plansGrid: {
 
 planCard: {
   backgroundColor: '#1a1c1b',
-  padding: '56px 44px',
-  borderRadius: '16px',
+  padding: '40px 30px',
+  borderRadius: '12px',
   border: '2px solid rgba(63, 72, 22, 0.5)',
   position: 'relative',
   transition: 'transform 0.3s ease, border-color 0.3s ease',
   cursor: 'pointer',
   display: 'flex',
   flexDirection: 'column',
-  minHeight: '560px',
 
   width: '100%',
   minWidth: 0,   // ✅ VERY IMPORTANT (fixes flex/grid overflow bug)
@@ -405,12 +403,12 @@ if (typeof document !== 'undefined') {
         border-color: #d9fb06;
       }
 
-      /* ✅ Desktop: 4 equal cards, centered, larger fixed width */
+      /* ✅ Desktop: 4 equal cards, centered, fixed width */
       .plans-grid {
         display: grid !important;
-        grid-template-columns: repeat(4, minmax(360px, 420px)) !important;
+        grid-template-columns: repeat(4, minmax(260px, 300px)) !important;
         justify-content: center;
-        gap: 40px;
+        gap: 30px;
       }
 
       /* ✅ Prevent content from stretching cards */

@@ -175,10 +175,10 @@ const Contact = () => {
               {/* Map */}
               <div style={styles.mapContainer}>
                 <MapContainer
-                  center={[28.670784349999998, 77.11399785]}
-                  zoom={14}
+                  center={[28.6651133936506, 77.09985925439446]}
+                  zoom={16}
                   scrollWheelZoom={false}
-                  style={{ height: 450, width: '100%' }}
+                  style={{ height: 300, width: '100%' }}
                 >
                   <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -498,9 +498,6 @@ if (typeof document !== 'undefined') {
       }
       .form-row > div {
         width: 100% !important;
-      }
-      iframe {
-        max-width: 100% !important;
       }
     }
   `;
