@@ -2,7 +2,42 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SITE_DATA } from '../data/mock';
 import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+
+const GOOGLE_LOCATOR_CONFIG = {
+  locations: [
+    {
+      title: 'Fit Planet Gym',
+      address1: 'B-3/83, Paschim Vihar',
+      address2: 'New Delhi, India 110056',
+      coords: { lat: 28.6651133936506, lng: 77.09985925439446 },
+      actions: [
+        {
+          label: 'Get directions',
+          defaultUrl:
+            'https://www.google.com/maps/dir/?api=1&destination=28.6651133936506,77.09985925439446'
+        }
+      ]
+    }
+  ],
+  mapOptions: {
+    center: { lat: 28.6651133936506, lng: 77.09985925439446 },
+    fullscreenControl: true,
+    mapTypeControl: false,
+    streetViewControl: false,
+    zoom: 16,
+    zoomControl: true,
+    maxZoom: 17,
+    mapId: ''
+  },
+  capabilities: {
+    input: false,
+    autocomplete: false,
+    directions: true,
+    distanceMatrix: false,
+    details: false,
+    actions: true
+  }
+};
 
 const Contact = () => {
   const location = useLocation();
@@ -27,6 +62,53 @@ const Contact = () => {
       }));
     }
   }, [location.state]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const ECL_SRC =
+      'https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js';
+
+    const loadEcl = () =>
+      new Promise((resolve, reject) => {
+        const existing = document.querySelector(`script[src="${ECL_SRC}"]`);
+        if (existing) return resolve();
+
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = ECL_SRC;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Google Locator library'));
+        document.body.appendChild(script);
+      });
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        await loadEcl();
+        if (cancelled) return;
+
+        await customElements.whenDefined('gmpx-store-locator');
+        if (cancelled) return;
+
+        const locator = document.querySelector('gmpx-store-locator');
+        if (!locator || typeof locator.configureFromQuickBuilder !== 'function') return;
+
+        locator.configureFromQuickBuilder({
+          ...GOOGLE_LOCATOR_CONFIG,
+          mapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ''
+        });
+      } catch (e) {
+        // If the key isn't provided or the script is blocked, fail silently to avoid breaking the page.
+        console.warn(e);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -174,17 +256,11 @@ const Contact = () => {
 
               {/* Map */}
               <div style={styles.mapContainer}>
-                <MapContainer
-                  center={[28.6651133936506, 77.09985925439446]}
-                  zoom={16}
-                  scrollWheelZoom={false}
-                  style={{ height: 300, width: '100%' }}
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                </MapContainer>
+                <gmpx-api-loader
+                  key={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ''}
+                  solution-channel="GMP_QB_locatorplus_v11_fitplanet"
+                ></gmpx-api-loader>
+                <gmpx-store-locator></gmpx-store-locator>
               </div>
             </div>
 
@@ -386,7 +462,8 @@ const styles = {
   mapContainer: {
     borderRadius: '8px',
     overflow: 'hidden',
-    border: '1px solid rgba(63, 72, 22, 0.5)'
+    border: '1px solid rgba(63, 72, 22, 0.5)',
+    height: 450
   },
   map: {
     border: 'none',
