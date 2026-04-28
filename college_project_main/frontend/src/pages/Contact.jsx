@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SITE_DATA } from '../data/mock';
 import { MapPin, Phone, Mail, Clock, CheckCircle } from 'lucide-react';
@@ -7,20 +7,14 @@ const GOOGLE_LOCATOR_CONFIG = {
   locations: [
     {
       title: 'Fit Planet Gym',
-      address1: 'B-3/83, Paschim Vihar',
-      address2: 'New Delhi, India 110056',
-      coords: { lat: 28.6651133936506, lng: 77.09985925439446 },
-      actions: [
-        {
-          label: 'Get directions',
-          defaultUrl:
-            'https://www.google.com/maps/dir/?api=1&destination=28.6651133936506,77.09985925439446'
-        }
-      ]
+      address1: '83, CH Veerchand Road',
+      address2: 'New Delhi, Delhi, India',
+      coords: { lat: 28.6650077, lng: 77.0997125 },
+      placeId: 'ChIJV8AFCvIFDTkRdVVYT2ttC3U'
     }
   ],
   mapOptions: {
-    center: { lat: 28.6651133936506, lng: 77.09985925439446 },
+    center: { lat: 28.6650077, lng: 77.0997125 },
     fullscreenControl: true,
     mapTypeControl: false,
     streetViewControl: false,
@@ -32,15 +26,17 @@ const GOOGLE_LOCATOR_CONFIG = {
   capabilities: {
     input: false,
     autocomplete: false,
-    directions: true,
+    directions: false,
     distanceMatrix: false,
     details: false,
-    actions: true
+    actions: false
   }
 };
 
 const Contact = () => {
   const location = useLocation();
+  const apiLoaderRef = useRef(null);
+  const locatorRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -86,18 +82,31 @@ const Contact = () => {
 
     (async () => {
       try {
+        const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || '';
+        const mapId = process.env.REACT_APP_GOOGLE_MAPS_MAP_ID;
+
         await loadEcl();
         if (cancelled) return;
 
         await customElements.whenDefined('gmpx-store-locator');
         if (cancelled) return;
 
-        const locator = document.querySelector('gmpx-store-locator');
+        // React reserves the `key` prop, so we must set the `key=""` attribute manually.
+        if (apiLoaderRef.current && apiKey) {
+          apiLoaderRef.current.setAttribute('key', apiKey);
+          apiLoaderRef.current.setAttribute('solution-channel', 'GMP_QB_locatorplus_v11_c');
+        }
+
+        if (locatorRef.current && mapId) {
+          locatorRef.current.setAttribute('map-id', mapId);
+        }
+
+        const locator = locatorRef.current;
         if (!locator || typeof locator.configureFromQuickBuilder !== 'function') return;
 
         locator.configureFromQuickBuilder({
           ...GOOGLE_LOCATOR_CONFIG,
-          mapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ''
+          mapsApiKey: apiKey
         });
       } catch (e) {
         // If the key isn't provided or the script is blocked, fail silently to avoid breaking the page.
@@ -256,11 +265,8 @@ const Contact = () => {
 
               {/* Map */}
               <div style={styles.mapContainer}>
-                <gmpx-api-loader
-                  key={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ''}
-                  solution-channel="GMP_QB_locatorplus_v11_fitplanet"
-                ></gmpx-api-loader>
-                <gmpx-store-locator></gmpx-store-locator>
+                <gmpx-api-loader ref={apiLoaderRef}></gmpx-api-loader>
+                <gmpx-store-locator ref={locatorRef} style={styles.locator}></gmpx-store-locator>
               </div>
             </div>
 
@@ -464,6 +470,25 @@ const styles = {
     overflow: 'hidden',
     border: '1px solid rgba(63, 72, 22, 0.5)',
     height: 450
+  },
+  locator: {
+    width: '100%',
+    height: '100%',
+    // Locator Plus theming (from Google snippet)
+    '--gmpx-color-surface': '#fff',
+    '--gmpx-color-on-surface': '#212121',
+    '--gmpx-color-on-surface-variant': '#757575',
+    '--gmpx-color-primary': '#1967d2',
+    '--gmpx-color-outline': '#e0e0e0',
+    '--gmpx-fixed-panel-width-row-layout': '28.5em',
+    '--gmpx-fixed-panel-height-column-layout': '65%',
+    '--gmpx-font-family-base': '"Roboto", sans-serif',
+    '--gmpx-font-family-headings': '"Roboto", sans-serif',
+    '--gmpx-font-size-base': '0.875rem',
+    '--gmpx-hours-color-open': '#188038',
+    '--gmpx-hours-color-closed': '#d50000',
+    '--gmpx-rating-color': '#ffb300',
+    '--gmpx-rating-color-empty': '#e0e0e0'
   },
   map: {
     border: 'none',
